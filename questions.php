@@ -19,6 +19,7 @@
             } else {
                 $f_name = $_POST['f_name'];
                 $l_name = $_POST['l_name'];
+                $_SESSION['new-acc'] = true;
                 $_SESSION['first'] = $f_name;
                 $_SESSION['last'] = $l_name;
                 $_SESSION['pass-pin'] = $pin; // Storing the pin in session

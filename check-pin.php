@@ -2,6 +2,10 @@
 session_start();
 require $_SERVER["DOCUMENT_ROOT"] . '/expertsystem-psychologist/config/database.php';
 
+if (isset($_GET['quest'])){
+    $_SESSION['another-question'] = $_GET['quest'];
+}
+
 if (isset($_POST['pin-num'])) {
     function validate($data) {
         $data = trim($data);
@@ -24,7 +28,12 @@ if (isset($_POST['pin-num'])) {
         $result = mysqli_query($conn, $sql);
         if (mysqli_num_rows($result) === 1) {
             $row = mysqli_fetch_assoc($result);
-            header("Location: result.php");
+            if ($_SESSION['another-question']) {
+                unset($_SESSION['another-question']);
+                header("Location: proceed-to-q.php");
+            } else {
+                header("Location: result.php");
+            }
         } else {
             header("Location: enter-pin.php?error=Incorrect PIN");
         }

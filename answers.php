@@ -28,21 +28,29 @@ if (isset($_POST['submit'])) {
     require $_SERVER["DOCUMENT_ROOT"] . '/expertsystem-psychologist/config/database.php';
 
     // Include the save-user.php file to save the user data
-    include('save-user.php');
-
+    if ($_SESSION['new-acc']) {
+        include('save-user.php');
+    }
+    
     // Include the get-id.php file to fetch the user_id
     include('get-id.php');
 
     $user_id = $row['user_id']; // Get the user_id from the fetched row
 
     // Inserting the answers into the database
+    // Inserting the answers into the database
     $values = array($user_id); // Include the user_id as the first value in the array
     $placeholders = array("user_id"); // Include "user_id" as the first placeholder in the array
+
+    $answers = array_map('intval', $_SESSION['answers']); // Convert answers to integers
+    $result = array_sum($answers); // Calculate the sum of all answers
 
     foreach ($_SESSION['answers'] as $index => $answer) {
         $values[] = $answer;
         $placeholders[] = "q" . ($index + 1);
     }
+    $values[] = $result;
+    $placeholders[] = "result";
 
     $valuesString = implode("', '", $values);
     $placeholdersString = implode(", ", $placeholders);
@@ -68,6 +76,7 @@ if (isset($_POST['submit'])) {
     // Redirect to the result page
 
     // Unset the session after saving to the database
+    unset($_SESSION['new-acc']);
     unset($_SESSION['answers']);
     unset($_SESSION['first']);
     unset($_SESSION['last']);

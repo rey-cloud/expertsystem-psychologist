@@ -8,7 +8,6 @@ if (isset($_POST['viewResult'])) {
     header("Location: enter-pin.php");
 }
 if (isset($_POST['another-response'])) {
-    header("Location: enter-pin.php");
+    header("Location: enter-pin.php?quest=true");
 }
-
 ?>
