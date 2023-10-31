@@ -18,11 +18,10 @@ if (isset($_POST['email'])) {
     } else {
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
+        $_SESSION['email'] = $email;
         if (mysqli_num_rows($result) === 1) {
-            $_SESSION['email'] = $email; // Storing the email in session
             header("Location: used-acc.php");
         } else {
-            $_SESSION['email'] = $email;
             header("Location: new-acc.php");
         }
     }

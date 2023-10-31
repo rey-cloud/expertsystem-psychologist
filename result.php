@@ -6,6 +6,33 @@
     <title>Result</title>
 </head>
 <body>
+  <div>
+
+		<?php
+    require('user-result.php');
+    while($row = $result->fetch_assoc()){
+    ?>
+    <h4>Name: <?php echo $row['first_name'] . "" . $row['last_name']; ?></h4>
+    <h4>Age: <?php echo $row['age']; ?></h4>
+    <h4>Email: <?php echo $row['email']; ?></h4>
+    
+		<?php } 
+		if ($row = $result->fetch_assoc()) {
+			$_SESSION['fk-user-id'] = $row['user_id'];
+		}
+		?>
+
+
+		<?php
+    include('result-user.php');
+    while($row = $result->fetch_assoc()){
+    ?>
+		<h4>Date Taken: <?php echo $row['created_at']; ?></h4>
+		<p><?php echo $row['result_id']; ?></p>
+
+		<?php } ?>
+
+  </div>
     <h1>Your Result: 63</h1>
     <h3>INTERPRETING THE BECK DEPRESSION INVENTORY</h3>
     <p>Now that you have completed the questionnaire, add up the score for each
@@ -22,8 +49,8 @@
     <table>
       <tr>
         <th>Total Score</th>
-        <th>Levels of Depression</th>
-      </tr>
+          <th>Levels of Depression</th>
+        </tr>
       <tr>
         <td>1-10</td>
         <td>These ups and downs are considered normal</td>
