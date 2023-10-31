@@ -97,7 +97,6 @@ if (isset($_POST['submit'])) {
     unset($_SESSION['first']);
     unset($_SESSION['last']);
     unset($_SESSION['age']);
-    unset($_SESSION['email']);
     unset($_SESSION['pass-pin']);
     unset($_SESSION['displayed_questions']);
     header("Location: result.php");

@@ -16,12 +16,14 @@ if (isset($_POST['email'])) {
     if (empty($email)) {
         header("Location: login-page.php?error=Username is required");
     } else {
+        $_SESSION['email'] = $email;
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
-        $_SESSION['email'] = $email;
         if (mysqli_num_rows($result) === 1) {
+            $_SESSION['email'] = $email;
             header("Location: used-acc.php");
         } else {
+            $_SESSION['email'] = $email;
             header("Location: new-acc.php");
         }
     }
