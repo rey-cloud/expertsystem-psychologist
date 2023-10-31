@@ -33,7 +33,7 @@ if (isset($_POST['pin-num'])) {
                 $_SESSION['new-acc'] = false;
                 header("Location: proceed-to-q.php");
             } else {
-                header("Location: result.php");
+                header("Location: view-results.php");
             }
         } else {
             header("Location: enter-pin.php?error=Incorrect PIN");
