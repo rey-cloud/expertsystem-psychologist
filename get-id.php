@@ -13,7 +13,7 @@ if ($result && $result->num_rows > 0) {
     $row = $result->fetch_assoc(); // Assign the query result to the $row variable
     $user_id = $row['user_id']; // Retrieve the user_id from the $row variable
 } else {
-    // Handle the case where the query does not return any rows
+    //handle error
 }
 
 $conn->close();

@@ -12,6 +12,7 @@
         <?php } ?>
         <input type="text" name="f_name" placeholder="First Name (optional)">
         <input type="text" name="l_name" placeholder="Last Name (optional)">
+        <input type="text" name="age" placeholder="Age">
         <input type="password" name="pass" placeholder="PIN (4 numbers)" >
         <button type="submit">Submit</button>
         <button type="submit" name="cancel">Cancel</button>

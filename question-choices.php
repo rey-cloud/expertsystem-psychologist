@@ -8,6 +8,15 @@
 </head>
 <body>
 <?php
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['answers'])) {
+    $_SESSION['answers'] = array(); // Initialize the answers as an empty array
+}
+
 $questions = array(
     "Question 1" => array("I do not feel sad.", "I feel sad", "I am sad all the time and I can't snap out of it.", "I am so sad and unhappy that I can't stand it."),
     "Question 2" => array("I am not particularly discouraged about the future.", "I feel discouraged about the future.", "I feel I have nothing to look forward to.", "I feel the future is hopeless and that things cannot improve."),
@@ -33,10 +42,22 @@ $questions = array(
 );
 
 $question_number = isset($question_number) ? $question_number : 0;
+
+if (isset($_SESSION['answers']) && is_array($_SESSION['answers'])) { // Check if answers is an array
+    foreach ($_SESSION['answers'] as $index => $value) {
+        echo $_SESSION['answers'][$index];
+    }
+}
+
+if (isset($_SESSION['error'])) {
+    echo "<p style='color: red;'>".$_SESSION['error']."</p>"; // Display the error message
+    unset($_SESSION['error']);
+}
 ?>
 
 <!-- HTML Form -->
 <h3>Questionnaire</h3>
+
 <form action="answers.php" method="post">
     <input type="hidden" name="question_number" value="<?php echo $question_number; ?>">
     <h4>Question <?php echo $question_number + 1; ?></h4>

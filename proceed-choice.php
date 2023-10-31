@@ -1,7 +1,7 @@
 <?php 
 
 if (isset($_POST['yes'])) {
-    header("Location: question-choices.php");
+    header("Location: answers.php");
     exit(); 
 }
 if (isset($_POST['no'])) {

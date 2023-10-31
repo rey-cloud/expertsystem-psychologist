@@ -30,6 +30,7 @@ if (isset($_POST['pin-num'])) {
             $row = mysqli_fetch_assoc($result);
             if ($_SESSION['another-question']) {
                 unset($_SESSION['another-question']);
+                $_SESSION['new-acc'] = false;
                 header("Location: proceed-to-q.php");
             } else {
                 header("Location: result.php");
